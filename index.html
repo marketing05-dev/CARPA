@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacaembu Autopeças - Catálogo CARPA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --blue-dark: #020617;
+            --blue-navy: #0A2540;
+            --blue-accent: #38bdf8;
+            --orange-main: #FF6B00;
+            --orange-glow: rgba(255, 107, 0, 0.4);
+            --text-white: #ffffff;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--blue-dark);
+            color: var(--text-white);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.15), transparent 50%),
+                              radial-gradient(circle at 20% 80%, rgba(255, 107, 0, 0.1), transparent 50%);
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            padding: 20px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-area img { height: 40px; }
+        .logo-area .divider { width: 1px; height: 25px; background: rgba(255,255,255,0.3); }
+
+        .product-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--orange-main);
+            letter-spacing: 1px;
+        }
+
+        /* ─── LANG SWITCHER ─── */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            background: rgba(255,255,255,0.05);
+            padding: 4px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            transition: 0.3s;
+            opacity: 0.5;
+        }
+
+        .lang-btn.active {
+            background: var(--orange-main);
+            opacity: 1;
+            box-shadow: 0 0 10px var(--orange-glow);
+        }
+
+        /* ─── HERO SECTION ─── */
+        .hero {
+            padding: 180px 80px 100px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 46px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .hero .headline-sub {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--blue-accent);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ─── SECTIONS BASE ─── */
+        .section-container {
+            padding: 60px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        /* ─── GRID CARDS ─── */
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--blue-accent);
+            background: rgba(56, 189, 248, 0.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .feature-card .icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            color: var(--blue-accent);
+            font-size: 28px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover .icon-wrapper {
+            background: var(--blue-accent);
+            color: var(--blue-dark);
+            transform: scale(1.1);
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .feature-card.clickable {
+            cursor: pointer;
+        }
+
+        /* ─── INTERFACE SECTION (2 COLUMNS) ─── */
+        .grid-interface {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .interface-card {
+            background: linear-gradient(145deg, rgba(2,6,23,0.6) 0%, rgba(10,37,64,0.4) 100%);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        .interface-card h3 {
+            color: var(--orange-main);
+            margin-bottom: 20px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .interface-card ul {
+            list-style: none;
+        }
+
+        .interface-card ul li {
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .interface-card ul li i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: var(--blue-accent);
+        }
+
+        /* ─── CHART SECTION ─── */
+        .chart-wrapper {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .chart-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .chart-row:last-child { margin-bottom: 0; }
+
+        .chart-label {
+            width: 170px;
+            font-weight: 600;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chart-bar-container {
+            flex-grow: 1;
+            background: rgba(255,255,255,0.05);
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .chart-bar {
+            height: 100%;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            font-weight: 800;
+            color: #fff;
+            width: 0; 
+            min-width: 45px; 
+            transition: width 2.5s cubic-bezier(0.22, 1, 0.36, 1);
+            overflow: hidden;
+        }
+
+        .bar-1 { background: linear-gradient(90deg, #FF6B00, #ff8c33); box-shadow: 0 0 15px rgba(255,107,0,0.4); }
+        .bar-2 { background: linear-gradient(90deg, #38bdf8, #7dd3fc); box-shadow: 0 0 15px rgba(56,189,248,0.4); }
+        .bar-3 { background: linear-gradient(90deg, #818cf8, #a5b4fc); box-shadow: 0 0 15px rgba(129,140,248,0.4); }
+        .bar-4 { background: linear-gradient(90deg, #34d399, #6ee7b7); box-shadow: 0 0 15px rgba(52,211,153,0.4); }
+        .bar-5 { background: linear-gradient(90deg, #94a3b8, #cbd5e1); box-shadow: 0 0 15px rgba(148,163,184,0.4); }
+
+        /* ─── REQUISITOS ─── */
+        .tech-req {
+            background: rgba(255, 107, 0, 0.1);
+            border-left: 4px solid var(--orange-main);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+        }
+        
+        .tech-req i {
+            font-size: 30px;
+            color: var(--orange-main);
+        }
+
+        /* ─── POPUP MODAL ENHANCED & VALUED MEDIA ─── */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(2, 6, 23, 0.96);
+            backdrop-filter: blur(16px);
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .modal-content {
+            background: #061526;
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 107, 0, 0.4);
+            max-width: 1350px;
+            width: 100%;
+            max-height: 90vh;
+            position: relative;
+            box-shadow: 0 0 60px rgba(255, 107, 0, 0.2);
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .modal-media-wrapper {
+            width: 100%;
+            height: 100%;
+            min-height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(2, 6, 23, 0.6);
+            border-radius: 16px;
+            padding: 15px;
+            border: 1px solid var(--card-border);
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 100%;
+            max-height: 75vh;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+
+        .modal-text {
+            font-size: 15px;
+            color: var(--text-white);
+            text-align: left;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            max-height: 78vh;
+            overflow-y: auto;
+            padding-right: 20px;
+        }
+
+        /* Custom Scrollbar para o texto interno do modal */
+        .modal-text::-webkit-scrollbar {
+            width: 6px;
+        }
+        .modal-text::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+        .modal-text::-webkit-scrollbar-thumb {
+            background: rgba(255, 107, 0, 0.4);
+            border-radius: 10px;
+        }
+        .modal-text::-webkit-scrollbar-thumb:hover {
+            background: var(--orange-main);
+        }
+
+        .modal-text p {
+            margin-bottom: 16px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: var(--text-muted);
+            font-size: 36px;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 100;
+        }
+
+        .close-btn:hover {
+            color: var(--orange-main);
+            transform: scale(1.1);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 40px 80px;
+            text-align: center;
+            background: #01040f;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 1100px) {
+            .modal-content {
+                grid-template-columns: 1fr;
+                max-height: 92vh;
+                gap: 20px;
+                padding: 40px 25px 25px 25px;
+            }
+            .modal-media-wrapper {
+                min-height: auto;
+            }
+            .modal-content img {
+                max-height: 40vh;
+            }
+            .modal-text {
+                max-height: 40vh;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .grid-interface { grid-template-columns: 1fr; }
+            .chart-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .chart-label { width: 100%; }
+            .chart-bar-container { margin: 0; width: 100%; }
+        }
+        @media (max-width: 650px) {
+            .hero h1 { font-size: 30px; }
+            .section-container { padding: 40px 20px; }
+            header { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="https://blogserlider.wordpress.com/wp-content/uploads/2026/05/laranja-e-branco.png" alt="Pacaembu Autopeças">
+            <div class="divider"></div>
+            <div class="product-logo">CARPA</div>
+        </div>
+        
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLanguage('pt')" id="btn-pt">PT</button>
+            <button class="lang-btn"        onclick="setLanguage('en')" id="btn-en">EN</button>
+            <button class="lang-btn"        onclick="setLanguage('es')" id="btn-es">ES</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1 data-i18n="hero-h1">O Catálogo <span style="color:var(--orange-main);">Mais Completo</span> do Brasil</h1>
+        <div class="headline-sub" data-i18n="hero-sub">CARPA - Catálogo Rápido Pacaembu Autopeças</div>
+        <p data-i18n="hero-p">A ferramenta definitiva desenvolvida exclusivamente para facilitar a busca, identificação visual e aplicação precisa de autopeças para veículos comerciais de linha pesada.</p>
+    </section>
+
+    <section class="section-container">
+        <div class="section-title">
+            <h2 data-i18n="feat-title" style="color:var(--blue-accent);">Pilares do Sistema</h2>
+            <p data-i18n="feat-desc">Conheça as funcionalidades que garantem assertividade na compra e manutenção.</p>
+        </div>
+
+        <div class="grid-features">
+            <div class="feature-card clickable" id="photo-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-camera"></i></div>
+                <h3 data-i18n="f1-t">Fotos Reais</h3>
+                <p data-i18n="f1-d">Compare visualmente o item físico com o catálogo. Imagens em alta definição que garantem 100% de assertividade na sua compra.</p>
+            </div>
+
+            <div class="feature-card clickable" id="exploded-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-layer-group"></i></div>
+                <h3 data-i18n="f2-t">Vista Explodida</h3>
+                <p data-i18n="f2-d">Diagramas de montagem detalhados. Identifique rapidamente componentes específicos dentro de sistemas complexos (motor, transmissão, etc).</p>
+            </div>
+
+            <div class="feature-card clickable" id="orientation-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-bullseye"></i></div>
+                <h3 data-i18n="f3-t">Orientação e Aplicação</h3>
+                <p data-i18n="f3-d">Sistema inteligente (User Friendly) que indica exatamente em quais modelos de veículos e montadoras cada peça se aplica, reduzindo erros.</p>
+            </div>
+
+            <div class="feature-card clickable" id="select-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-users-gear"></i></div>
+                <h3 data-i18n="f4-t">Grupo Seleto</h3>
+                <p data-i18n="f4-d">Acesso otimizado e direcionado a parceiros estratégicos e clientes selecionados da rede Pacaembu Autopeças.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" style="background: rgba(0,0,0,0.2);">
+        <div class="section-title">
+            <h2 data-i18n="int-title-h1" style="color: var(--orange-main);">Descubra como o software organiza a</h2>
+            <h2 data-i18n="int-title-h2" style="color: var(--orange-main);">complexidade mecânica em uma tela intuitiva.</h2>
+        </div>
+
+        <div class="grid-interface">
+            <div class="interface-card">
+                <h3 data-i18n="int-c1-h"><i class="fa-solid fa-truck"></i> Navegação Visual Intuitiva</h3>
+                <ul>
+                    <li data-i18n="int-c1-l1"><i class="fa-solid fa-check"></i> <strong>Linhas de Veículos:</strong> Filtros rápidos no topo para Caminhão, Carreta, Ônibus, Van-Vuc, Tratores e Colhedoras.</li>
+                    <li data-i18n="int-c1-l2"><i class="fa-solid fa-check"></i> <strong>Esquema Técnico Interativo:</strong> Silhueta do caminhão com o trem de força em destaque (motor, câmbio, diferencial, eixos).</li>
+                    <li data-i18n="int-c1-l3"><i class="fa-solid fa-check"></i> <strong>Menus Suspensos:</strong> Clique direto nos pontos numerados do veículo para abrir listas de peças daquela região.</li>
+                    <li data-i18n="int-c1-l4"><i class="fa-solid fa-check"></i> <strong>Filtro de Montadoras:</strong> Organização ágil por grandes marcas como Mercedes-Benz, Scania, Volvo e outras.</li>
+                </ul>
+            </div>
+
+            <div class="interface-card">
+                <h3 data-i18n="int-c2-h"><i class="fa-solid fa-laptop-code"></i> Tela de Listagem e Resultados</h3>
+                <ul>
+                    <li data-i18n="int-c2-l1"><i class="fa-solid fa-check"></i> <strong>Tabela Organizada:</strong> Visualização limpa com colunas estruturadas para Código, Descrição da peça (ex: juntas, filtros) e Fabricante.</li>
+                    <li data-i18n="int-c2-l2"><i class="fa-solid fa-check"></i> <strong>Tabelas de Aplicação Técnica:</strong> Cruzamento exato de dados para atestar a compatibilidade do item.</li>
+                    <li data-i18n="int-c2-l3"><i class="fa-solid fa-check"></i> <strong>Fotos reais:</strong> Visualização rápida das fotos reais das peças diretamente no catálogo.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <div class="section-title">
+            <h2 data-i18n="chart-title">Utilização por <span style="color:var(--blue-accent);">Ramo de Atividade</span></h2>
+            <p data-i18n="chart-desc">O alcance e a versatilidade do software CARPA no mercado de linha pesada.</p>
+        </div>
+
+        <div class="chart-wrapper">
+            <div class="chart-row">
+                <div class="chart-label" data-i18n="lbl-auto">Autopeças</div>
+                <div class="chart-bar-container">
+                    <div class="chart-bar bar-1" data-width="40%">40%</div>
+                </div>
+            </div>
+            
+            <div class="chart-row">
+                <div class="chart-label" data-i18n="lbl-fleet">Frota</div>
+                <div class="chart-bar-container">
+                    <div class="chart-bar bar-2" data-width="25%">25%</div>
+                </div>
+            </div>
+
+            <div class="chart-row">
+                <div class="chart-label" data-i18n="lbl-trans">Transportadora</div>
+                <div class="chart-bar-container">
+                    <div class="chart-bar bar-3" data-width="20%">20%</div>
+                </div>
+            </div>
+
+            <div class="chart-row">
+                <div class="chart-label" data-i18n="lbl-work">Oficinas</div>
+                <div class="chart-bar-container">
+                    <div class="chart-bar bar-4" data-width="10%">10%</div>
+                </div>
+            </div>
+
+            <div class="chart-row">
+                <div class="chart-label" data-i18n="lbl-other">Outros</div>
+                <div class="chart-bar-container">
+                    <div class="chart-bar bar-5" data-width="5%">5%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-req">
+            <i class="fa-brands fa-windows"></i>
+            <div>
+                <h4 style="font-size: 18px; margin-bottom: 5px;" data-i18n="req-h">Requisitos do Sistema</h4>
+                <p style="font-size: 14px; color: var(--text-muted);" data-i18n="req-p">O software CARPA está disponível exclusivamente para a versão <strong>Desktop em ambiente Windows</strong>. Utilize o QR Code no topo de nossos materiais impressos para direcionamento à página de download ou entre em contato com nosso time comercial.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="photo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-photo-modal">&times;</span>
+            <div class="modal-media-wrapper">
+                <img src="https://blogserlider.wordpress.com/wp-content/uploads/2026/06/peca-desejada-servo-embreagem.gif" alt="Servo de Embreagem">
+            </div>
+            <div class="modal-text">
+                <p style="font-weight: 800; font-size: 20px; line-height: 1.3; color: var(--orange-main); font-family: 'Orbitron', sans-serif;" data-i18n="pop-h">Evite o caminhão parado: compare cada detalhe! 1️⃣ 2️⃣ 🚛💨</p>
+                <p data-i18n="pop-p1">Na linha pesada, a gente sabe que cada milímetro e cada código importam. Errar a peça significa prejuízo e prazo estourado.</p>
+                <p data-i18n="pop-p2">É por isso que grande parte das fotos do nosso catálogo são 100% reais, tiradas direto do nosso estoque.</p>
+                <p data-i18n="pop-p3">🔍 <strong>Compare furações, conexões e acabamentos</strong> com a certeza absoluta de que a peça que você está vendo na tela é exatamente a que vai chegar na sua oficina.</p>
+                <p style="font-weight: 700; font-size: 16px; color: var(--blue-accent); margin-top: 10px;" data-i18n="pop-p4">Não perca tempo nem dinheiro. Compre com quem entende de linha pesada! ⚙️</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="exploded-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-exploded-modal">&times;</span>
+            <div class="modal-media-wrapper">
+                <img src="https://blogserlider.wordpress.com/wp-content/uploads/2026/06/vistacarpa.gif" alt="Vista Explodida CARPA">
+            </div>
+            <div class="modal-text">
+                <p style="font-weight: 800; font-size: 20px; line-height: 1.3; color: var(--orange-main); font-family: 'Orbitron', sans-serif;" data-i18n="exp-h">Produtividade e precisão em cada página 🛠️📈</p>
+                <p data-i18n="exp-p1">Desenvolvido para quem não pode perder tempo, este catálogo utiliza o sistema de vistas explodidas para traduzir a complexidade da linha pesada em um mapa visual claro e prático.</p>
+                <p data-i18n="exp-p2">Com ele, você visualiza a posição exata de cada componente, elimina erros na compra de peças e agiliza a manutenção mecânica.</p>
+                <p style="font-weight: 700; font-size: 16px; color: var(--blue-accent); margin-top: 10px;" data-i18n="exp-p3">Uma ferramenta pensada para reduzir o tempo de máquina parada e garantir a máxima eficiência para o seu negócio. ⚙️</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="segments-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-segments-modal">&times;</span>
+            <div class="modal-media-wrapper">
+                <img src="https://blogserlider.wordpress.com/wp-content/uploads/2026/06/naveg.gif" alt="Navegação Inteligente CARPA">
+            </div>
+            <div class="modal-text">
+                <div style="margin-bottom: 30px; border-bottom: 1px solid var(--card-border); padding-bottom: 25px;">
+                    <h3 style="font-family: 'Orbitron', sans-serif; color: var(--orange-main); font-size: 19px; margin-bottom: 12px;" data-i18n="seg-h1">Ideal para Frotas e Transportadoras:</h3>
+                    <p style="font-size: 14px; color: #fff; margin-bottom: 14px;" data-i18n="seg-p1">No mercado de autopeças da linha pesada, onde o tempo do veículo parado representa prejuízo direto, a eficiência na busca por componentes é vital. Um catálogo inteligente, que reúne navegação intuitiva, aplicação completa, sugestão de itens similares e pacotes técnicos, transforma radicalmente a experiência de compra e a produtividade da oficina ou frota.</p>
+                    <p style="font-weight: 700; color: var(--blue-accent); font-size: 14px; margin-bottom: 12px;" data-i18n="seg-sub1">Veja os principais benefícios dessa solução:</p>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px;"><strong style="color:#fff;" data-i18n="seg-f1-t">Agilidade e Assertividade no Diagnóstico:</strong> <span data-i18n="seg-f1-d">A navegação intuitiva permite que o mecânico ou comprador encontre a peça exata em poucos cliques, sem perder tempo em menus confusos. Juntando isso à aplicação completa (detalhes de ano, modelo, motorização e chassi), o risco de comprar uma peça incompatível cai a zero.</span></p>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px;"><strong style="color:#fff;" data-i18n="seg-f2-t">Aumento do Ticket Médio (Cross-selling):</strong> <span data-i18n="seg-f2-d">A sugestão de itens similares ou complementares lembra o comprador de levar componentes que frequentemente são trocados juntos (como substituir os parafusos ou juntas ao trocar uma fita de freio), aumentando as vendas de forma orgânica Simonetti.</span></p>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px;"><strong style="color:#fff;" data-i18n="seg-f3-t">Manutenção Preventiva e Completa:</strong> <span data-i18n="seg-f3-d">Com os pacotes técnicos, o catálogo oferece soluções modulares prontas (ex: \"Kit de Embreagem Completo\" ou \"Pacote de Revisão da Suspensão\"). Isso facilita a rotina da oficina, que adquire todo o ecossistema de peças necessárias para o reparo de uma só vez, garantindo a qualidade do serviço.</span></p>
+                    <p style="font-style: italic; color: var(--blue-accent); font-weight: 600; font-size: 13.5px;" data-i18n="seg-res1">O resultado prático: Menos devoluções de mercadoria, redução drástica do tempo de busca, aumento na confiança do cliente e, acima de tudo, o veículo pesado de volta à estrada o mais rápido possível.</p>
+                </div>
+                <div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; color: var(--orange-main); font-size: 19px; margin-bottom: 12px;" data-i18n="seg-h2">Indispensável para Lojistas, oficinas e pequenas autopeças:</h3>
+                    <p style="font-size: 14px; color: #fff; margin-bottom: 14px;" data-i18n="seg-p2">No mercado de linha pesada, os pequenos varejos de autopeças enfrentam um desafio diário gigante: atender mecânicos e frotistas exigentes com um estoque físico limitado e, muitas vezes, sem uma equipe técnica especializada em todas as montadoras. Para esses lojistas, o seu catálogo deixa de ser apenas uma ferramenta de busca e se transforma em uma fonte de informação segura e um consultor de vendas digital.</p>
+                    <p style="font-weight: 700; color: var(--blue-accent); font-size: 14px; margin-bottom: 12px;" data-i18n="seg-sub2">Veja como essa solução impacta diretamente o ecossistema dos varejos:</p>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px;"><strong style="color:#fff;" data-i18n="seg-v1-t">Estoque Infinito e Sem Erros:</strong> <span data-i18n="seg-v1-d">O varejista não consegue ter todas as peças de um caminhão ou ônibus na prateleira. Com a navegação intuitiva e a aplicação completa, ele vende sob encomenda com a certeza absoluta de que está pedindo o item correto, eliminando o prejuízo com fretes de devolução.</span></p>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px;"><strong style="color:#fff;" data-i18n="seg-v2-t">Autoridade e Confiança no Balcão:</strong> <span data-i18n="seg-v2-d">Ao consultar os pacotes técnicos e as sugestões de itens similares, o vendedor do varejo ganha o argumento técnico que precisa. Ele consegue orientar o cliente como se fosse um especialista de fábrica, sugerindo componentes complementares indispensáveis para a manutenção.</span></p>
+                    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px;"><strong style="color:#fff;" data-i18n="seg-v3-t">Fidelização do Cliente Local:</strong> <span data-i18n="seg-v3-d">Quando o mecânico da região percebe que o varejo local nunca erra a aplicação e sempre oferece a solução completa, a relação de confiança se consolida. O catálogo empodera o pequeno lojista para competir de igual para igual com os grandes distribuidores.</span></p>
+                    <p style="font-style: italic; color: var(--orange-main); font-weight: 700; font-size: 13.5px;" data-i18n="seg-res2">Em suma: Para o varejo, o CARPA é o braço direito que reduz o medo de errar, multiplica a capacidade de venda e garante a segurança que o cliente da linha pesada exige.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p data-i18n="foot-1">&copy; 2026 Pacaembu Autopeças. Catálogo CARPA. Todos os direitos reservados.</p>
+        <p style="margin-top: 10px; font-size: 11px; opacity: 0.6;" data-i18n="foot-2">Soluções integradas para Aftermarket Automotivo e Gestão de Frotas de Linha Pesada.</p>
+    </footer>
+
+    <script>
+    const translations = {
+        pt: {
+            "hero-h1": "O Catálogo <span style='color:var(--orange-main);'>Mais Completo</span> do Brasil",
+            "hero-sub": "CARPA - Catálogo Rápido Pacaembu Autopeças",
+            "hero-p": "A ferramenta definitiva desenvolvida exclusivamente para facilitar a busca, identificação visual e aplicação precisa de autopeças para veículos comerciais de linha pesada.",
+            "feat-title": "Pilares do <span style='color:var(--blue-accent);'>Sistema</span>",
+            "feat-desc": "Conheça as funcionalidades que garantem assertividade na compra e manutenção.",
+            "f1-t": "Fotos Reais",
+            "f1-d": "Compare visualmente o item físico com o catálogo. Imagens em alta definição que garantem 100% de assertividade na sua compra.",
+            "f2-t": "Vista Explodida",
+            "f2-d": "Diagramas de montagem detalhados. Identifique rapidamente componentes específicos dentro de sistemas complexos (motor, transmissão, etc).",
+            "f3-t": "Orientação e Aplicação",
+            "f3-d": "Sistema inteligente (User Friendly) que indica exatamente em quais modelos de veículos e montadoras cada peça se aplica, reduzindo erros.",
+            "f4-t": "Grupo Seleto",
+            "f4-d": "Acesso otimizado e direcionado a parceiros estratégicos e clientes selecionados da rede Pacaembu Autopeças.",
+            "int-title-h1": "Descubra como o software organiza a",
+            "int-title-h2": "complexidade mecânica em uma tela intuitiva.",
+            "int-desc": "complexidade mecânica em uma tela intuitiva.",
+            "int-c1-h": "<i class='fa-solid fa-truck'></i> Navegação Visual Intuitiva",
+            "int-c1-l1": "<i class='fa-solid fa-check'></i> <strong>Linhas de Veículos:</strong> Filtros rápidos no topo para Caminhão, Carreta, Ônibus, Van-Vuc, Tratores e Colhedoras.",
+            "int-c1-l2": "<i class='fa-solid fa-check'></i> <strong>Esquema Técnico Interativo:</strong> Silhueta do caminhão com o trem de força em destaque (motor, câmbio, diferencial, eixos).",
+            "int-c1-l3": "<i class='fa-solid fa-check'></i> <strong>Menus Suspensos:</strong> Clique direto nos pontos numerados do veículo para abrir listas de peças daquela região.",
+            "int-c1-l4": "<i class='fa-solid fa-check'></i> <strong>Filtro de Montadoras:</strong> Organização ágil por grandes marcas como Mercedes-Benz, Scania, Volvo e outras.",
+            "int-c2-h": "<i class='fa-solid fa-laptop-code'></i> Tela de Listagem e Resultados",
+            "int-c2-l1": "<i class='fa-solid fa-check'></i> <strong>Tabela Organizada:</strong> Visualização limpa com colunas estruturadas para Código, Descrição da peça (ex: juntas, filtros) e Fabricante.",
+            "int-c2-l2": "<i class='fa-solid fa-check'></i> <strong>Tabelas de Aplicação Técnica:</strong> Cruzamento exato de dados para atestar a compatibilidade do item.",
+            "int-c2-l3": "<i class='fa-solid fa-check'></i> <strong>Fotos reais:</strong> Visualização rápida das fotos reais das peças diretamente no catálogo.",
+            "chart-title": "Utilização por <span style='color:var(--blue-accent);'>Ramo de Atividade</span>",
+            "chart-desc": "O alcance e a versatilidade do software CARPA no mercado de linha pesada.",
+            "lbl-auto": "Autopeças", "lbl-fleet": "Frota", "lbl-trans": "Transportadora", "lbl-work": "Oficinas", "lbl-other": "Outros",
+            "req-h": "Requisitos do Sistema",
+            "req-p": "O software CARPA está disponível exclusivamente para a versão <strong>Desktop em ambiente Windows</strong>. Utilize o QR Code no topo de nossos materiais impressos para direcionamento à página de download ou entre em contato com nosso time comercial.",
+            "foot-1": "&copy; 2026 Pacaembu Autopeças. Catálogo CARPA. Todos os direitos reservados.",
+            "foot-2": "Soluções integradas para Aftermarket Automotivo e Gestão de Frotas de Linha Pesada.",
+            "pop-h": "Evite o caminhão parado: compare cada detalhe! 1️⃣ 2️⃣ 🚛💨",
+            "pop-p1": "Na linha pesada, a gente sabe que cada milímetro e cada código importam. Errar a peça significa prejuízo e prazo estourado.",
+            "pop-p2": "É por isso que grande parte das fotos do nosso catálogo são 100% reais, tiradas direto do nosso estoque.",
+            "pop-p3": "🔍 <strong>Compare furações, conexões e acabamentos</strong> com a certeza absoluta de que a peça que você está vendo na tela é exatamente a que vai chegar na sua oficina.",
+            "pop-p4": "Não perca tempo nem dinheiro. Compre com quem entende de linha pesada! ⚙️",
+            "exp-h": "Produtividade e precisão em cada página 🛠️📈",
+            "exp-p1": "Desenvolvido para quem não pode perder tempo, este catálogo utiliza o sistema de vistas explodidas para traduzir a complexidade da linha pesada em um mapa visual claro e prático.",
+            "exp-p2": "Com ele, você visualiza a posição exata de cada componente, elimina erros na compra de peças e agiliza a manutenção mecânica.",
+            "exp-p3": "Uma ferramenta pensada para reduzir o tempo de máquina parada e garantir a máxima eficiência para o seu negócio. ⚙️",
+            
+            "seg-h1": "Ideal para Frotas e Transportadoras:",
+            "seg-p1": "No mercado de autopeças da linha pesada, onde o tempo do veículo parado representa prejuízo direto, a eficiência na busca por componentes é vital. Um catálogo inteligente, que reúne navegação intuitiva, aplicação completa, sugestão de itens similares e pacotes técnicos, transforma radicalmente a experiência de compra e a produtividade da oficina ou frota.",
+            "seg-sub1": "Veja os principais benefícios dessa solução:",
+            "seg-f1-t": "Agilidade e Assertividade no Diagnóstico:",
+            "seg-f1-d": "La navegação intuitiva permite que o mecânico ou comprador encontre a peça exata em poucos cliques, sem perder tempo em menus confusos. Juntando isso à aplicação completa (detalhes de ano, modelo, motorização e chassi), o risco de comprar uma peça incompatível cai a zero.",
+            "seg-f2-t": "Aumento do Ticket Médio (Cross-selling):",
+            "seg-f2-d": "A sugestão de itens similares ou complementares lembra o comprador de levar componentes que frequentemente são trocados juntos (como substituir os parafusos ou juntas ao trocar uma fita de freio), aumentando as vendas de forma orgânica.",
+            "seg-f3-t": "Manutenção Preventiva e Completa:",
+            "seg-f3-d": "Com os pacotes técnicos, o catálogo oferece soluções modulares prontas (ex: \"Kit de Embreagem Completo\" ou \"Pacote de Revisão da Suspensão\"). Isso facilita a rotina da oficina, que adquire todo o ecossistema de peças necessárias para o reparo de uma só vez, garantindo a qualidade do serviço.",
+            "seg-res1": "O resultado prático: Menos devoluções de mercadoria, redução drástica do tempo de busca, aumento na confiança do cliente e, acima de tudo, o veículo pesado de volta à estrada o mais rápido possível.",
+            "seg-h2": "Indispensável para Lojistas, oficinas e pequenas autopeças:",
+            "seg-p2": "No mercado de linha pesada, os pequenos varejos de autopeças enfrentam um desafio diário gigante: atender mecânicos e frotistas exigentes com um estoque físico limitado e, muitas vezes, sem uma equipe técnica especializada em todas as montadoras. Para esses lojistas, o seu catálogo deixa de ser apenas uma ferramenta de busca e se transforma em uma fonte de informação segura e um consultor de vendas digital.",
+            "seg-sub2": "Veja como essa solução impacta diretamente o ecossistema dos varejos:",
+            "seg-v1-t": "Estoque Infinito e Sem Erros:",
+            "seg-v1-d": "O varejista não consegue ter todas as peças de um caminhão ou ônibus na prateleira. Com a navegação intuitiva e a aplicação completa, ele vende sob encomenda com a certeza absoluta de que está pedindo o item correto, eliminando o prejuízo com fretes de devolução.",
+            "seg-v2-t": "Autoridade e Confiança no Balcão:",
+            "seg-v2-d": "Ao consultar os pacotes técnicos e as sugestões de itens similares, o vendedor do varejo ganha o argumento técnico que precisa. Ele consegue orientar o cliente como se fosse um especialista de fábrica, sugerindo componentes complementares indispensáveis para a manutenção.",
+            "seg-v3-t": "Fidelização do Cliente Local:",
+            "seg-v3-d": "Quando o mecânico da região percebe que o varejo local nunca erra a aplicação e sempre oferece a solução completa, a relação de confiança se consolida. O catálogo empodera o pequeno lojista para competir de igual para igual com os grandes distribuidores.",
+            "seg-res2": "Em suma: Para o varejo, o CARPA é o braço direito que reduz o medo de errar, multiplica a capacidade de venda e garante a segurança que o cliente da linha pesada exige."
+        },
+        en: {
+            "hero-h1": "The <span style='color:var(--orange-main);'>Most Complete</span> Catalog in Brazil",
+            "hero-sub": "CARPA - Pacaembu Autopeças Quick Catalog",
+            "hero-p": "The ultimate tool developed exclusively to facilitate the search, visual identification, and precise application of auto parts for heavy-duty commercial vehicles.",
+            "feat-title": "Pillars of the <span style='color:var(--blue-accent);'>System</span>",
+            "feat-desc": "Discover the features that guarantee accuracy in purchase and maintenance.",
+            "f1-t": "Real Pictures",
+            "f1-d": "Visually compare the physical item with the catalog. High-definition images that guarantee 100% accuracy in your purchase.",
+            "f2-t": "Exploded Views",
+            "f2-d": "Detailed assembly diagrams. Quickly identify specific components within complex systems (engine, transmission, etc.).",
+            "f3-t": "Guidance and Application",
+            "f3-d": "Smart system (User Friendly) that indicates exactly which vehicle models and automakers each part applies to, reducing errors.",
+            "f4-t": "Select Group",
+            "f4-d": "Optimized and targeted access for strategic partners and selected clients of the Pacaembu Autopeças network.",
+            "int-title-h1": "Discover how the software organizes",
+            "int-title-h2": "mechanical complexity on an intuitive screen.",
+            "int-desc": "Discover how the software organizes mechanical complexity on an intuitive screen.",
+            "int-c1-h": "<i class='fa-solid fa-truck'></i> Intuitive Visual Navigation",
+            "int-c1-l1": "<i class='fa-solid fa-check'></i> <strong>Vehicle Lines:</strong> Quick filters at the top for Truck, Trailer, Bus, Van-VUC, Tractors, and Harvesters.",
+            "int-c1-l2": "<i class='fa-solid fa-check'></i> <strong>Interactive Technical Diagram:</strong> Truck silhouette with the powertrain highlighted (engine, gearbox, differential, axles).",
+            "int-c1-l3": "<i class='fa-solid fa-check'></i> <strong>Dropdown Menus:</strong> Direct click on numbered points of the vehicle to open part lists for that specific region.",
+            "int-c1-l4": "<i class='fa-solid fa-check'></i> <strong>Automaker Filter:</strong> Agile organization by major brands like Mercedes-Benz, Scania, Volvo, and others.",
+            "int-c2-h": "<i class='fa-solid fa-laptop-code'></i> Listing and Results Screen",
+            "int-c2-l1": "<i class='fa-solid fa-check'></i> <strong>Organized Table:</strong> Clean view with structured columns for Code, Part Description (e.g., gaskets, filters), and Manufacturer.",
+            "int-c2-l2": "<i class='fa-solid fa-check'></i> <strong>Technical Application Tables:</strong> Precise data cross-referencing to verify item compatibility.",
+            "int-c2-l3": "<i class='fa-solid fa-check'></i> <strong>Real pictures:</strong> Quick view of real part photos directly in the catalog.",
+            "chart-title": "Usage by Activity Branch",
+            "chart-desc": "The reach and versatility of the CARPA software in the heavy-duty market.",
+            "lbl-auto": "Auto Parts", "lbl-fleet": "Fleet", "lbl-trans": "Transport Co.", "lbl-work": "Workshops", "lbl-other": "Others",
+            "req-h": "System Requirements",
+            "req-p": "The CARPA software is available exclusively for the <strong>Desktop version in a Windows environment</strong>. Use the QR Code at the top of our printed materials to be directed to the download page or contact our sales team.",
+            "foot-1": "&copy; 2026 Pacaembu Autopeças. CARPA Catalog. All rights reserved.",
+            "foot-2": "Integrated solutions for Automotive Aftermarket and Heavy-Duty Fleet Management.",
+            "pop-h": "Avoid downtime: compare every detail! 1️⃣ 2️⃣ 🚛💨",
+            "pop-p1": "In the heavy-duty segment, we know that every millimeter and every code matters. Choosing the wrong part means lost revenue and missed deadlines.",
+            "pop-p2": "That is why most of the photos in our catalog are 100% real, taken straight from our own stock.",
+            "pop-p3": "🔍 <strong>Compare holes, connections, and finishes</strong> with the absolute certainty that the part you see on your screen is exactly the one that will arrive at your workshop.",
+            "pop-p4": "Don't waste time or money. Buy from those who understand heavy-duty! ⚙️",
+            "exp-h": "Productivity and precision on every page 🛠️📈",
+            "exp-p1": "Developed for those who cannot afford to waste time, this catalog uses an exploded view system to translate the complexity of heavy-duty components into a clear and practical visual roadmap.",
+            "exp-p2": "With it, you can view the exact position of each component, eliminate errors in parts procurement, and accelerate mechanical maintenance.",
+            "exp-p3": "A tool designed to minimize machine downtime and ensure maximum efficiency for your business. ⚙️",
+            
+            "seg-h1": "Ideal for Fleets and Transport Companies:",
+            "seg-p1": "In the heavy-duty auto parts market, where vehicle downtime represents a direct financial loss, efficiency in searching for components is vital...",
+            "seg-sub1": "See the main benefits of this solution:",
+            "seg-f1-t": "Speed and Assertiveness in Diagnostics:",
+            "seg-f1-d": "Intuitive navigation allows mechanics or buyers to find the exact part in just a few clicks...",
+            "seg-f2-t": "Increased Average Ticket (Cross-selling):",
+            "seg-f2-d": "The suggestion of similar or complementary items reminds the buyer to include components...",
+            "seg-f3-t": "Preventive and Complete Maintenance:",
+            "seg-f3-d": "With technical packages, the catalog offers ready-to-use modular solutions...",
+            "seg-res1": "Practical result: Fewer product returns, a drastic reduction in search time...",
+            "seg-h2": "Indispensable for Retailers, Workshops, and Small Auto Parts Shops:",
+            "seg-p2": "In the heavy-duty market, small auto parts retailers face a massive daily challenge..."
+        },
+        es: {
+            "hero-h1": "El Catálogo <span style='color:var(--orange-main);'>Más Completo</span> de Brasil",
+            "hero-sub": "CARPA - Catálogo Rápido Pacaembu Autopeças",
+            "hero-p": "La herramienta definitiva desarrollada exclusivamente para facilitar la búsqueda, identificación visual y aplicación precisa de autopartes para vehículos comerciales de línea pesada.",
+            "feat-title": "Pilares del <span style='color:var(--blue-accent);'>Sistema</span>",
+            "feat-desc": "Conozca las funcionalidades que garantizan la precisión en la compra y el mantenimiento.",
+            "f1-t": "Fotos Reales",
+            "f1-d": "Compare visualmente el artículo físico con el catálogo. Imágenes en alta definición que garantizan 100% de acierto na su compra.",
+            "f2-t": "Vista Explotada",
+            "f2-d": "Diagramas de montaje detallados. Identifique rápidamente componentes específicos dentro de sistemas complejos (motor, transmisión, etc).",
+            "f3-t": "Orientación y Aplicación",
+            "f3-d": "Sistema inteligente (User Friendly) que indica exactamente en qué modelos de vehículos y fabricantes se aplica cada pieza, reduciendo errores.",
+            "f4-t": "Grupo Selecto",
+            "f4-d": "Acceso optimizado y dirigido a socios estratégicos y clientes seleccionados de la red Pacaembu Autopeças.",
+            "int-title-h1": "Descubra cómo el software organiza la",
+            "int-title-h2": "complejidad mecánica en una pantalla intuitiva.",
+            "int-desc": "Descubra cómo el software organiza la complejidad mecánica en una pantalla intuitiva.",
+            "int-c1-h": "<i class='fa-solid fa-truck'></i> Navegación Visual Intuitiva",
+            "int-c1-l1": "<i class='fa-solid fa-check'></i> <strong>Líneas de Vehículos:</strong> Filtros rápidos en la parte superior para Camión, Remolque, Autobús, Van-Vuc, Tractores y Cosechadoras.",
+            "int-c1-l2": "<i class='fa-solid fa-check'></i> <strong>Esquema Técnico Interactivo:</strong> Silueta del camión con el tren motriz destacado (motor, caja de cambios, diferencial, ejes).",
+            "int-c1-l3": "<i class='fa-solid fa-check'></i> <strong>Menús Desplegables:</strong> Clic directo en los puntos numerados del vehículo para abrir listas de piezas de esa región.",
+            "int-c1-l4": "<i class='fa-solid fa-check'></i> <strong>Filtro de Fabricantes:</strong> Organização ágil por grandes marcas como Mercedes-Benz, Scania, Volvo y otras.",
+            "int-c2-h": "<i class='fa-solid fa-laptop-code'></i> Pantalla de Listado y Resultados",
+            "int-c2-l1": "<i class='fa-solid fa-check'></i> <strong>Tabla Organizada:</strong> Vista limpia con columnas estructuradas para Código, Descripción de la pieza (ej: juntas, filtros) y Fabricante.",
+            "int-c2-l2": "<i class='fa-solid fa-check'></i> <strong>Tablas de Aplicación Técnica:</strong> Cruce exacto de datos para verificar la compatibilidad del artículo.",
+            "int-c2-l3": "<i class='fa-solid fa-check'></i> <strong>Fotos reales:</strong> Visualización rápida de las fotos reales de las piezas directamente en el catálogo.",
+            "chart-title": "Uso por <span style='color:var(--blue-accent);'>Ramo de Actividad</span>",
+            "chart-desc": "El alcance y la versatilidad do software CARPA en el mercado de línea pesada.",
+            "lbl-auto": "Autopartes", "lbl-fleet": "Flota", "lbl-trans": "Transportadora", "lbl-work": "Talleres", "lbl-other": "Otros",
+            "req-h": "Requisitos del Sistema",
+            "req-p": "El software CARPA está disponible exclusivamente para la versión de escritorio en entorno Windows. Utilice el código QR en la parte superior de nuestros materiales impresos para ser dirigido a la página de descarga o póngase en contacto con nuestro equipo comercial.",
+            "foot-1": "&copy; 2026 Pacaembu Autopeças. Catálogo CARPA. Todos los derechos reservados.",
+            "foot-2": "Soluciones integradas para Aftermarket Automotriz y Gestión de Flotas de Línea Pesada.",
+            "pop-h": "¡Evite el camión parado: compare cada detalle! 1️⃣ 2️⃣ 🚛💨",
+            "pop-p1": "En la línea pesada, sabemos que cada milímetro y cada código importan. Errar la pieza significa pérdidas y plazos vencidos.",
+            "pop-p2": "Es por eso que gran parte de las fotos de nuestro catálogo son 100% reales, tomadas directamente de nuestro stock.",
+            "pop-p3": "🔍 <strong>Compare perforaciones, conexiones y acabados</strong> con la certeza absoluta de que la pieza que está viendo en la pantalla es exactamente la que llegará a su taller.",
+            "pop-p4": "No pierda tiempo ni dinero. ¡Compre con quienes entienden de línea pesada! ⚙️",
+            "exp-h": "Productividad y precisión en cada página 🛠️📈",
+            "exp-p1": "Desarrollado para quienes no pueden perder tiempo, este catálogo utiliza el sistema de vistas explotadas para traducir la complejidad de la línea pesada en un mapa visual claro y práctico.",
+            "exp-p2": "Con él, podrá visualizar la posición exacta de cada componente, eliminar errores en la compra de piezas y agilizar el mantenimiento mecánico.",
+            "exp-p3": "Una herramienta diseñada para reducir el tiempo de máquina parada y garantizar la máxima eficiencia para su negocio. ⚙️",
+            
+            "seg-h1": "Ideal para Flotas y Transportistas:",
+            "seg-p1": "En el mercado de repuestos de línea pesada, donde el tiempo de un vehículo parado representa una pérdida financiera directa, la eficiencia en la búsqueda de componentes es vital...",
+            "seg-sub1": "Vea los principales beneficios de esta solución:",
+            "seg-f1-t": "Agilidad y Certeza en el Diagnóstico:",
+            "seg-f1-d": "La navegación intuitiva permite al mecánico o comprador encontrar la pieza exacta con unos pocos clics...",
+            "seg-f2-t": "Aumento del Ticket Promedio (Cross-selling):",
+            "seg-f2-d": "La sugerencia de artículos similares o complementarios le recuerda al comprador...",
+            "seg-f3-t": "Mantenimiento Preventivo y Completo:",
+            "seg-f3-d": "Con los paquetes técnicos, el catálogo ofrece soluciones modulares listas...",
+            "seg-res1": "El resultado práctico: Menos devoluciones de mercancía, reducción drástica...",
+            "seg-h2": "Indispensable para Comerciantes, Talleres y Pequeñas Casas de Repuestos:",
+            "seg-p2": "En el mercado de línea pesada, las pequeñas tiendas de repuestos enfrentan..."
+        }
+    };
+
+    let currentLang = 'pt';
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const chartWrapper = document.querySelector('.chart-wrapper');
+        const bars = document.querySelectorAll('.chart-bar');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    bars.forEach(bar => {
+                        const targetWidth = bar.getAttribute('data-width');
+                        bar.style.width = targetWidth;
+                    });
+                    observer.unobserve(chartWrapper);
+                }
+            });
+        }, { 
+            threshold: 0.3 
+        });
+
+        if (chartWrapper) {
+            observer.observe(chartWrapper);
+        }
+
+        // Lógica do Popup Modal (Fotos Reais)
+        const photoCard = document.getElementById('photo-card');
+        const photoModal = document.getElementById('photo-modal');
+        const closePhotoModal = document.getElementById('close-photo-modal');
+
+        if (photoCard && photoModal && closePhotoModal) {
+            photoCard.addEventListener('click', () => {
+                photoModal.style.display = 'flex';
+            });
+
+            closePhotoModal.addEventListener('click', () => {
+                photoModal.style.display = 'none';
+            });
+
+            photoModal.addEventListener('click', (e) => {
+                if (e.target === photoModal) {
+                    photoModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Lógica do Popup Modal (Vista Explodida)
+        const explodedCard = document.getElementById('exploded-card');
+        const explodedModal = document.getElementById('exploded-modal');
+        const closeExplodedModal = document.getElementById('close-exploded-modal');
+
+        if (explodedCard && explodedModal && closeExplodedModal) {
+            explodedCard.addEventListener('click', () => {
+                explodedModal.style.display = 'flex';
+            });
+
+            closeExplodedModal.addEventListener('click', () => {
+                explodedModal.style.display = 'none';
+            });
+
+            explodedModal.addEventListener('click', (e) => {
+                if (e.target === explodedModal) {
+                    explodedModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Lógica de ativação do modal original de Orientação e Aplicação
+        const orientationCard = document.getElementById('orientation-card');
+        const segmentsModal = document.getElementById('segments-modal');
+        const closeSegmentsModal = document.getElementById('close-segments-modal');
+
+        if (orientationCard && segmentsModal) {
+            orientationCard.addEventListener('click', () => {
+                segmentsModal.style.display = 'flex';
+            });
+        }
+
+        if (segmentsModal && closeSegmentsModal) {
+            closeSegmentsModal.addEventListener('click', () => {
+                segmentsModal.style.display = 'none';
+            });
+
+            segmentsModal.addEventListener('click', (e) => {
+                if (e.target === segmentsModal) {
+                    segmentsModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Configuração da Opção 2: Redirecionamento do cartão "Grupo Seleto" para abrir em nova aba
+        const selectCard = document.getElementById('select-card');
+        if (selectCard) {
+            selectCard.addEventListener('click', () => {
+                window.open('https://landing-eight-jet-12.vercel.app/', '_blank');
+            });
+        }
+    });
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('btn-' + lang).classList.add('active');
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key] !== undefined) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+    }
+    </script>
+</body>
+</html>
