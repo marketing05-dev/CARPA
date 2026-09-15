@@ -109,6 +109,27 @@
             text-align: center;
         }
 
+        /* Botão de Download */
+        .download-btn {
+            display: inline-block;
+            background: var(--orange-main);
+            color: var(--text-white);
+            text-decoration: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 30px;
+            box-shadow: 0 0 15px var(--orange-glow);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px var(--orange-glow);
+            background: #e66000;
+        }
+
         .hero h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: 46px;
@@ -496,6 +517,7 @@
         <h1 data-i18n="hero-h1">O Catálogo <span style="color:var(--orange-main);">Mais Completo</span> do Brasil</h1>
         <div class="headline-sub" data-i18n="hero-sub">CARPA - Catálogo Rápido Pacaembu Autopeças</div>
         <p data-i18n="hero-p">A ferramenta definitiva desenvolvida exclusivamente para facilitar a busca, identificação visual e aplicação precisa de autopeças para veículos comerciais de linha pesada.</p>
+        <a href="https://www.ideia2001.com.br/CatExp/AIAAF/InstalarCatalogoPacaembu.exe" class="download-btn">Baixe o catalogo Pacaembu</a>
     </section>
 
     <section class="section-container">
